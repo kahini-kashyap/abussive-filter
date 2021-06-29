@@ -9,9 +9,10 @@ app.get("/", function(req,res){
 
 function filter(req, res, next){
     let message= req.body.content;
-    var abuses = ["gadha", "stupid"]
-    for(let i=0; i<abuses.length; i++){
-        message = message.replace(abuses[i], "*")
+    var abusses = ["gadha", "stupid"]
+    for(let i=0; i<abusses.length; i++){
+        let reject = new RegExp(abusses[i], "g");
+        message = message.replace(reject, "****");
     }
     req.body.content = message;
     next();
@@ -30,5 +31,3 @@ app.listen(PORT, function(er){
         console.log("server is running")
     }
 })
-
-//1. the array with the for loop
